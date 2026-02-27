@@ -71,6 +71,6 @@ CMD [ \
     "--memory-pressure-off", \
     "--max_old_space_size=4096", \
     "--lang=ko_KR", \
-    "--user-agent=$DEFAULT_USER_AGENT" \
+    "--user-agent=${DEFAULT_USER_AGENT}" \
     ]
 
