@@ -21,8 +21,9 @@ RUN sed -i 's/^# ko_KR.UTF-8 UTF-8/ko_KR.UTF-8 UTF-8/' /etc/locale.gen && \
 ENV LANG=ko_KR.UTF-8 \
     LANGUAGE=ko_KR:ko \
     LC_ALL=ko_KR.UTF-8 \
-    # 기본 User-Agent (필요시 실행 시 덮어쓰기 가능)
-    DEFAULT_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    # 런타임 스크립트는 아래 두 값을 읽어 기본 헤더를 주입
+    DEFAULT_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+    DEFAULT_ACCEPT_LANGUAGE="ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"
 
 # 엔트리포인트 스크립트 추가 및 실행 권한 부여
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
