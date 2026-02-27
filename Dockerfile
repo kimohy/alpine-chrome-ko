@@ -25,11 +25,4 @@ ENV LANG=ko_KR.UTF-8 \
     DEFAULT_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
     DEFAULT_ACCEPT_LANGUAGE="ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"
 
-# 엔트리포인트 스크립트 추가 및 실행 권한 부여
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
-# 기본 실행
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["/headless-shell/headless-shell"]
 
