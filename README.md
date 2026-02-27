@@ -1,7 +1,7 @@
 # alpine-chrome-ko
 
-Zenika의 `alpine-chrome:stable` 이미지를 기반으로
-한국어 폰트(`font-noto-cjk`)가 포함된 경량 헤드리스 크롬 이미지입니다.
+Zenika의 `chromedp/headless-shell` 이미지를 기반으로
+한국어 폰트(`fonts-noto-cjk`)가 포함된 경량 헤드리스 브라우저 이미지입니다.
 
 ## 빌드
 
