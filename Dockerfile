@@ -20,25 +20,15 @@ RUN sed -i 's/^# ko_KR.UTF-8 UTF-8/ko_KR.UTF-8 UTF-8/' /etc/locale.gen && \
 # 환경 변수 설정
 ENV LANG=ko_KR.UTF-8 \
     LANGUAGE=ko_KR:ko \
-    LC_ALL=ko_KR.UTF-8
+    LC_ALL=ko_KR.UTF-8 \
+    # 기본 User-Agent (필요시 실행 시 덮어쓰기 가능)
+    DEFAULT_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-# bring in the wrapper entrypoint and make executable
+# 엔트리포인트 스크립트 추가 및 실행 권한 부여
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# default entrypoint will add user-agent flag if missing
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
-# the container should default to running headless-shell if no command supplied
-CMD ["/headless-shell/headless-shell"]
-
-# 기본 User-Agent 설정 (브라우저 실행 시 변경 가능)
-ENV DEFAULT_USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/100.0 Safari/537.36"
-
-# 실행 스크립트를 통해 user-agent를 인수로 전달
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
+# 기본 실행
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/headless-shell/headless-shell"]
 
