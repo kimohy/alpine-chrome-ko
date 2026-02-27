@@ -22,3 +22,23 @@ ENV LANG=ko_KR.UTF-8 \
     LANGUAGE=ko_KR:ko \
     LC_ALL=ko_KR.UTF-8
 
+# bring in the wrapper entrypoint and make executable
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# default entrypoint will add user-agent flag if missing
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# the container should default to running headless-shell if no command supplied
+CMD ["/headless-shell/headless-shell"]
+
+# 기본 User-Agent 설정 (브라우저 실행 시 변경 가능)
+ENV DEFAULT_USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/100.0 Safari/537.36"
+
+# 실행 스크립트를 통해 user-agent를 인수로 전달
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["/headless-shell/headless-shell"]
+
