@@ -25,52 +25,7 @@ ENV LANG=ko_KR.UTF-8 \
     DEFAULT_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
     DEFAULT_ACCEPT_LANGUAGE="ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"
 
-CMD [ \
-    "--no-sandbox", \
-    "--disable-setuid-sandbox", \
-    "--disable-dev-shm-usage", \
-    "--disable-accelerated-2d-canvas", \
-    "--no-first-run", \
-    "--no-zygote", \
-    "--disable-gpu", \
-    "--disable-web-security", \
-    "--disable-features=VizDisplayCompositor,TranslateUI,BlinkGenPropertyTrees", \
-    "--disable-background-timer-throttling", \
-    "--disable-backgrounding-occluded-windows", \
-    "--disable-renderer-backgrounding", \
-    "--disable-blink-features=AutomationControlled", \
-    "--disable-extensions-except", \
-    "--disable-plugins-discovery", \
-    "--disable-session-crashed-bubble", \
-    "--disable-infobars", \
-    "--disable-notifications", \
-    "--disable-default-apps", \
-    "--disable-popup-blocking", \
-    "--disable-translate", \
-    "--disable-images", \
-    "--disable-javascript-harmony-shipping", \
-    "--disable-background-networking", \
-    "--disable-sync", \
-    "--disable-component-extensions-with-background-pages", \
-    "--disable-background-mode", \
-    "--disable-client-side-phishing-detection", \
-    "--disable-hang-monitor", \
-    "--disable-prompt-on-repost", \
-    "--disable-domain-reliability", \
-    "--disable-ipc-flooding-protection", \
-    "--window-size=800,600", \
-    "--disable-software-rasterizer", \
-    "--run-all-compositor-stages-before-draw", \
-    "--disable-threaded-animation", \
-    "--disable-threaded-scrolling", \
-    "--disable-checker-imaging", \
-    "--disable-new-content-rendering-timeout", \
-    "--disable-image-animation-resync", \
-    "--disable-partial-raster", \
-    "--disable-skia-runtime-opts", \
-    "--memory-pressure-off", \
-    "--max_old_space_size=4096", \
-    "--lang=ko_KR", \
-    "--user-agent=${DEFAULT_USER_AGENT}" \
-    ]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
+ENTRYPOINT ["/entrypoint.sh"]
